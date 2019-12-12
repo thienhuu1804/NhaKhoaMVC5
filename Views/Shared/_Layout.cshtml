@@ -23,13 +23,8 @@
                     <li>@Html.ActionLink("Quản lý nhân viên", "Index", "NhanVien")</li>
                     <li>@Html.ActionLink("Quản lý khách hàng", "Index", "KhachHang")</li>
                     <li>@Html.ActionLink("Quản lý yêu cầu", "Index", "YeuCau")</li>
-                    <li>@Html.ActionLink("Quản lý dịch vụ", "About", "DichVu")</li>
-                    <li>@Html.ActionLink("Quản lý thuốc", "Contact", "Thuoc")</li>
-
-                    @*<li>@Html.ActionLink("Courses", "Index","Course")</li>
-        <li>@html.actionlink("instructors", "index","instructor")</li>
-        <li>@html.actionlink("departments", "index","department")</li>*@
-
+                    <li>@Html.ActionLink("Quản lý dịch vụ", "Index", "DichVu")</li>
+                    <li>@Html.ActionLink("Quản lý thuốc", "Index", "Thuocs")</li>
                 </ul>
             </div>
         </div>
@@ -38,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>
 

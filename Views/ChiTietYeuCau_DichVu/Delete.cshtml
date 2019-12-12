@@ -12,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.YeuCau.MaYC_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YeuCau.MaYC_ID)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DichVu.TenDV)
         </dt>
 
@@ -34,7 +42,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay về", "Index")
         </div>
     }
 </div>

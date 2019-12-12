@@ -7,15 +7,18 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.MaYC_ID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.KhachHang.TenKH)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NhaSi.MaCV)
+            @Html.DisplayNameFor(model => model.NhaSi.TenNV)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NgayYC)
@@ -27,25 +30,28 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhaSi.MaCV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayYC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TongTien)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaYC_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaYC_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaYC_ID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaYC_ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NhaSi.MaCV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayYC)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TongTien)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.MaYC_ID }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaYC_ID }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.MaYC_ID })
+    </td>
+</tr>
 }
 
 </table>

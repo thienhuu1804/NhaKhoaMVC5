@@ -37,25 +37,26 @@ namespace NhaKhoaMVC5.Controllers
             return View(chiTietYeuCau_DichVu);
         }
         //Get List Chitiet by MaDV
-        //public ActionResult Details(string madv)
-        //{
-        //    if (madv == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    IEnumerable<ChiTietYeuCau_DichVu> chiTietYeuCau_DichVu = db.ChiTietYeuCauDichVu.;
-        //    if (chiTietYeuCau_DichVu == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(chiTietYeuCau_DichVu);
-        //}
+        public ActionResult Details(string madv)
+        {
+            if (madv == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            IEnumerable<ChiTietYeuCau_DichVu> chiTietYeuCau_DichVu = db.ChiTietYeuCauDichVu.Where(i => i.MaYC_ID == madv);
+            if (chiTietYeuCau_DichVu == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chiTietYeuCau_DichVu);
+        }
 
         // GET: ChiTietYeuCau_DichVu/Create
         public ActionResult Create()
         {
-            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "TenDV");
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi");
+            ViewBag.YeuCau = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID");
+            ViewBag.DichVu = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID");
+            ViewBag.NhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID");
             return View();
         }
 
@@ -73,8 +74,8 @@ namespace NhaKhoaMVC5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "TenDV", chiTietYeuCau_DichVu.MaDV_ID);
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi", chiTietYeuCau_DichVu.MaYC_ID);
+            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaDV_ID);
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaYC_ID);
             return View(chiTietYeuCau_DichVu);
         }
 
@@ -90,8 +91,8 @@ namespace NhaKhoaMVC5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "TenDV", chiTietYeuCau_DichVu.MaDV_ID);
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi", chiTietYeuCau_DichVu.MaYC_ID);
+            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID", chiTietYeuCau_DichVu.MaDV_ID);
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaYC_ID);
             return View(chiTietYeuCau_DichVu);
         }
 
@@ -108,8 +109,8 @@ namespace NhaKhoaMVC5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "TenDV", chiTietYeuCau_DichVu.MaDV_ID);
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi", chiTietYeuCau_DichVu.MaYC_ID);
+            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID", chiTietYeuCau_DichVu.MaDV_ID);
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaYC_ID);
             return View(chiTietYeuCau_DichVu);
         }
 

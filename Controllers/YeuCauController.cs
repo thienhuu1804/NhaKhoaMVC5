@@ -40,8 +40,8 @@ namespace NhaKhoaMVC5.Controllers
         // GET: YeuCau/Create
         public ActionResult Create()
         {
-            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "TenKH");
-            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaCV");
+            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "MaKH_ID");
+            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID");
             return View();
         }
 
@@ -52,6 +52,8 @@ namespace NhaKhoaMVC5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaYC_ID,MaNhaSi,MaKH,NgayYC,TongTien")] YeuCau yeuCau)
         {
+            yeuCau.MaYC_ID = "yc" + db.YeuCauTB.Count()+1;
+            yeuCau.NgayYC = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.YeuCauTB.Add(yeuCau);
@@ -59,8 +61,8 @@ namespace NhaKhoaMVC5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "TenKH", yeuCau.MaKH);
-            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaCV", yeuCau.MaNhaSi);
+            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "MaKH_ID", yeuCau.MaKH);
+            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID", yeuCau.MaNhaSi);
             return View(yeuCau);
         }
 
@@ -76,8 +78,8 @@ namespace NhaKhoaMVC5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "TenKH", yeuCau.MaKH);
-            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaCV", yeuCau.MaNhaSi);
+            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "MaKH_ID", yeuCau.MaKH);
+            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID", yeuCau.MaNhaSi);
             return View(yeuCau);
         }
 
@@ -94,8 +96,8 @@ namespace NhaKhoaMVC5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "TenKH", yeuCau.MaKH);
-            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaCV", yeuCau.MaNhaSi);
+            ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "MaKH_ID", yeuCau.MaKH);
+            ViewBag.MaNhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID", yeuCau.MaNhaSi);
             return View(yeuCau);
         }
 

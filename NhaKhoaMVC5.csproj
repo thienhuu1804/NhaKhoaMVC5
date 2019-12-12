@@ -157,11 +157,16 @@
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\Thuoc.cs" />
+    <Compile Include="ModelView\YeuCauDichVuThuoc.cs" />
     <Compile Include="Models\YeuCau.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\NhaKhoaContext.mdf" />
+    <Content Include="App_Data\NhaKhoaContext2.mdf" />
+    <Content Include="App_Data\NhaKhoaContext2_log.ldf">
+      <DependentUpon>NhaKhoaContext2.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\NhaKhoaContext_log.ldf">
       <DependentUpon>NhaKhoaContext.mdf</DependentUpon>
     </Content>
