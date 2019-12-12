@@ -52,30 +52,34 @@ namespace NhaKhoaMVC5.Controllers
         }
 
         // GET: ChiTietYeuCau_DichVu/Create
+
         public ActionResult Create()
         {
-            ViewBag.YeuCau = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID");
-            ViewBag.DichVu = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID");
-            ViewBag.NhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID");
+
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB.ToList(), "MaYC_ID", "MaYC_ID");
+            ViewBag.MaDV_ID = new SelectList(db.DichVuTB.ToList(), "MaDV_ID", "MaDV_ID");
+            //ViewBag.NhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID");
             return View();
         }
+
 
         // POST: ChiTietYeuCau_DichVu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Stt_ID,MaDV_ID,MaYC_ID")] ChiTietYeuCau_DichVu chiTietYeuCau_DichVu)
+        public ActionResult Create([Bind(Include = "Stt_ID,MaYC_ID,MaDV_ID")] ChiTietYeuCau_DichVu chiTietYeuCau_DichVu)
         {
             if (ModelState.IsValid)
             {
                 db.ChiTietYeuCauDichVu.Add(chiTietYeuCau_DichVu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("../ChiTietYeuCau_Thuoc/create");
             }
 
-            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaDV_ID);
+            ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID", chiTietYeuCau_DichVu.MaDV_ID);
             ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaYC_ID);
+            //ViewBag.NhaSi = new SelectList(db.NhanVienTB, "MaNV_ID", "MaNV_ID", chiTietYeuCau_DichVu.MaDV_ID);
             return View(chiTietYeuCau_DichVu);
         }
 
@@ -107,7 +111,7 @@ namespace NhaKhoaMVC5.Controllers
             {
                 db.Entry(chiTietYeuCau_DichVu).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("../ChiTietYeuCau_Thuoc/edit");
             }
             ViewBag.MaDV_ID = new SelectList(db.DichVuTB, "MaDV_ID", "MaDV_ID", chiTietYeuCau_DichVu.MaDV_ID);
             ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_DichVu.MaYC_ID);
@@ -137,7 +141,7 @@ namespace NhaKhoaMVC5.Controllers
             ChiTietYeuCau_DichVu chiTietYeuCau_DichVu = db.ChiTietYeuCauDichVu.Find(id);
             db.ChiTietYeuCauDichVu.Remove(chiTietYeuCau_DichVu);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("../ChiTietYeuCau_Thuoc/delete");
         }
 
         protected override void Dispose(bool disposing)

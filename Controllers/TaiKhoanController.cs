@@ -129,5 +129,40 @@ namespace NhaKhoaMVC5.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "TenTaiKhoan_ID,MatKhau")] TaiKhoan taiKhoan)
+        {
+            var check = db.TaiKhoanTB.SingleOrDefault(u => u.TenTaiKhoan_ID == taiKhoan.TenTaiKhoan_ID && u.MatKhau == taiKhoan.MatKhau);
+            if(check != null)
+            {
+                Session["username"] = check.TenTaiKhoan_ID.ToString();
+                Session["pass"] = check.MatKhau.ToString();
+                return Redirect("~/Home");
+            }
+            else
+            {
+                ModelState.AddModelError("","Tài khoản hoặc mật khẩu sai!");
+            }
+            return View();
+        }
+
+        public ActionResult LoggedIn()
+        {
+            if(Session["username"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
     }
 }

@@ -52,13 +52,28 @@ namespace NhaKhoaMVC5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaYC_ID,MaNhaSi,MaKH,NgayYC,TongTien")] YeuCau yeuCau)
         {
-            yeuCau.MaYC_ID = "yc" + db.YeuCauTB.Count()+1;
+            int num = db.YeuCauTB.Count();
+            yeuCau.MaYC_ID = "yc" + num.ToString();
             yeuCau.NgayYC = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.YeuCauTB.Add(yeuCau);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int co = 0;
+                while (co == 0)
+                {
+                    try
+                    {
+                        db.SaveChanges();
+                        co = 1;
+                    }
+                    catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+                    {
+                            num += 1;
+                            yeuCau.MaYC_ID = "yc" + num.ToString();
+                    }
+                }
+                
+                return Redirect("../ChiTietYeuCau_DichVu/create");
             }
 
             ViewBag.MaKH = new SelectList(db.KhachHangTB, "MaKH_ID", "MaKH_ID", yeuCau.MaKH);

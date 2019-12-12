@@ -250,6 +250,7 @@
     <Content Include="Views\ChiTietYeuCau_Thuoc\Details.cshtml" />
     <Content Include="Views\ChiTietYeuCau_Thuoc\Edit.cshtml" />
     <Content Include="Views\ChiTietYeuCau_Thuoc\Index.cshtml" />
+    <Content Include="Views\TaiKhoan\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912120217001_inititialcreate.resx">

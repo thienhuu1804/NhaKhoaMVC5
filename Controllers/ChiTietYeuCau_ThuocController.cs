@@ -40,8 +40,8 @@ namespace NhaKhoaMVC5.Controllers
         // GET: ChiTietYeuCau_Thuoc/Create
         public ActionResult Create()
         {
-            ViewBag.MaThuoc_ID = new SelectList(db.ThuocTB, "MaThuoc_ID", "TenThuoc");
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi");
+            ViewBag.MaThuoc_ID = new SelectList(db.ThuocTB, "MaThuoc_ID", "MaThuoc_ID");
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID");
             return View();
         }
 
@@ -52,15 +52,15 @@ namespace NhaKhoaMVC5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Stt,MaYC_ID,MaThuoc_ID,SoLuong")] ChiTietYeuCau_Thuoc chiTietYeuCau_Thuoc)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && chiTietYeuCau_Thuoc.SoLuong > 0)
             {
                 db.ChiTietYeuCauThuoc.Add(chiTietYeuCau_Thuoc);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("../YeuCau");
             }
 
-            ViewBag.MaThuoc_ID = new SelectList(db.ThuocTB, "MaThuoc_ID", "TenThuoc", chiTietYeuCau_Thuoc.MaThuoc_ID);
-            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi", chiTietYeuCau_Thuoc.MaYC_ID);
+            ViewBag.MaThuoc_ID = new SelectList(db.ThuocTB, "MaThuoc_ID", "MaThuoc_ID", chiTietYeuCau_Thuoc.MaThuoc_ID);
+            ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaYC_ID", chiTietYeuCau_Thuoc.MaYC_ID);
             return View(chiTietYeuCau_Thuoc);
         }
 
@@ -92,7 +92,7 @@ namespace NhaKhoaMVC5.Controllers
             {
                 db.Entry(chiTietYeuCau_Thuoc).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("../YeuCau");
             }
             ViewBag.MaThuoc_ID = new SelectList(db.ThuocTB, "MaThuoc_ID", "TenThuoc", chiTietYeuCau_Thuoc.MaThuoc_ID);
             ViewBag.MaYC_ID = new SelectList(db.YeuCauTB, "MaYC_ID", "MaNhaSi", chiTietYeuCau_Thuoc.MaYC_ID);
@@ -122,7 +122,7 @@ namespace NhaKhoaMVC5.Controllers
             ChiTietYeuCau_Thuoc chiTietYeuCau_Thuoc = db.ChiTietYeuCauThuoc.Find(id);
             db.ChiTietYeuCauThuoc.Remove(chiTietYeuCau_Thuoc);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("../YeuCau");
         }
 
         protected override void Dispose(bool disposing)
