@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NhaKhoaMVC5.Models.ChiTietYeuCau_Thuoc>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Thuoc.TenThuoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YeuCau.MaNhaSi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thuoc.TenThuoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YeuCau.MaNhaSi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Stt }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Stt }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Stt })
+        </td>
+    </tr>
+}
+
+</table>

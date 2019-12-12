@@ -1,0 +1,42 @@
+﻿@model NhaKhoaMVC5.Models.ChiTietYeuCau_Thuoc
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietYeuCau_Thuoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Thuoc.TenThuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thuoc.TenThuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YeuCau.MaNhaSi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YeuCau.MaNhaSi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Stt }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
